@@ -1,0 +1,51 @@
+
+
+3. Print the transaction id and transaction_date for the category Cosmetic(Join)
+
+select transaction_details.transaction_id,transaction_details.transaction_date from transaction_details left join 
+product on transaction_details.product_id=product.product_id where product.category='Cosmetic' 
+
+
+5. Get the details of all the customer who did transaction between from date and to date 
+
+select distinct customer.customer_id,customer_name,transaction_date from customer_transaction left join transaction_details on 
+customer_transaction.transaction_id=transaction_details.transaction_id left join 
+customer on customer_transaction.customer_id=customer.customer_id where transaction_date='2021-01-21'
+
+
+6. Print all the region of city England in the form of list like  England      [region1,region2]
+
+select city,group_concat(region) as region from customer where city='England'  
+
+7. Get the details of all product id in the form for list for all the trancation dates
+
+select transaction_date,group_concat(product_id) from transaction_details group by transaction_date;
+
+8.List all the customers who did transaction on 2020-03-15 and print the day 
+
+select distinct customer.customer_id,customer_name,customer_transaction.transaction_id from customer 
+left join customer_transaction on customer.customer_id=customer_transaction.customer_id left join transaction_details
+on customer_transaction.transaction_id=transaction_details.transaction_id where 
+transaction_details.transaction_date='2020-03-15';
+
+9.Detail of customer who bought Electronic 
+
+select customer.customer_id,customer.customer_name from customer left join customer_transaction on
+customer.customer_id=customer_transaction.customer_id left join transaction_details on 
+customer_transaction.transaction_id=transaction_details.transaction_id left join product on 
+transaction_details.product_id=product.product_id where category='Electronic';
+
+ 
+10.list the city starting with 'F' and with six characters
+
+select city from customer where city like 'F%' and length(city)=6;
+
+11. List the regions those are having nine characters and fourth character must be 'k'
+select region from customer where length(region)=9 and region like '___K%'
+
+12. List the nine character city starting with 'I' and ending with 'a'
+
+select city from customer where length(city)=9 and city like 'I%a'; 
+
+
+codebasic
